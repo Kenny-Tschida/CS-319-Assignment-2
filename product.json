@@ -1,0 +1,98 @@
+[
+    {
+      "id": 1,
+      "title": "Black and Grey Hiking Boots",
+      "price": 89.99,
+      "description": "Your perfect boots for everyday use and walks in the forests, mountains, canyons and more.",
+      "image": "https://i2.pickpik.com/photos/395/106/435/walking-boots-hiking-boots-walking-shoes-shoe-preview.jpg",
+      "rating": { "rate": 4.4, "count": 80 }
+    },
+    {
+        "id": 2,
+        "title": "Columbia Waterproof Jacket",
+        "price": 139.95,
+        "description": "Reliable waterproof jacket, perfect for everyday use or rainy day hiking.",
+        "image": "https://live.staticflickr.com/65535/49060468986_34d1ed9bec.jpg",
+        "rating": { "rate": 4.2, "count": 50 }
+    },
+    {
+        "id": 3,
+        "title": "Large Hiking Backpack",
+        "price": 119.99,
+        "description": "Sturdy and durable hiking backpack, perfect for carrying everything you need, from food to camping gear.",
+        "image": "https://images.pexels.com/photos/12220945/pexels-photo-12220945.jpeg",
+        "rating": { "rate": 3.9, "count": 60 }
+    },
+    {
+        "id": 4,
+        "title": "Camel Bak",
+        "price": 59.99,
+        "description": "Reliable and easy to use camel bak, ditch your water bottles and switch to a camel bak!",
+        "image": "https://live.staticflickr.com/3414/5715091832_3bc49585aa_b.jpg",
+        "rating": { "rate": 4.5, "count": 65 }
+    },
+    {
+        "id": 5,
+        "title": "Olive Boonie Hat",
+        "price": 39.95,
+        "description": "Quality brim cut olive boonie, perfect for keeping sun and rain out of your eyes.",
+        "image": "https://live.staticflickr.com/3033/2995404487_a47d22976c_b.jpg",
+        "rating": { "rate": 3.8, "count": 150 }
+    },
+    {
+        "id": 6,
+        "title": "Rockstar GPS",
+        "price": 200.00,
+        "description": "Handheld quality and easy to use GPS tracking device, also performs S.O.S. messaging.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/0/09/RockStar_handheld_tracking_device_by_Rock_Seven_Mobile_Services_on_mountain.jpg",
+        "rating": {"rate": 4.8, "count": 25 }
+    },
+    {
+        "id": 7,
+        "title": "Twisted Firestarters",
+        "price": 10.99,
+        "description": "Effective and cheap kindling to be used for all types of firestarters, whether you're at home at the campfire or out in the wilderness.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/0/09/RockStar_handheld_tracking_device_by_Rock_Seven_Mobile_Services_on_mountain.jpg",
+        "rating": {"rate": 4.8, "count": 75 }
+    },
+    {
+        "id": 8,
+        "title": "Adjustable Cargo Pants",
+        "price": 80.00,
+        "description": "Durable and breathable cargo pants, wonderful for hiking, adjustable for the perfect fit.",
+        "image": "https://live.staticflickr.com/7083/7260338590_729116aaf3_c.jpg",
+        "rating": {"rate": 4.0, "count": 60}
+    },
+    {
+        "id": 9,
+        "title": "Blue Tent",
+        "price": 165.95,
+        "description": "1-2 Person tent, light-weight and water resistant, perfect for duo or solo hiking trips.",
+        "image": "https://live.staticflickr.com/2502/3843580813_23bff5f840_b.jpg",
+        "rating": {"rate": 4.6, "count": 30}
+    },
+    {
+        "id": 10,
+        "title": "First Aid Kit",
+        "price": 39.99,
+        "description": "Basic first aid kit, contains bandages, gauze, neosporin, alcohol wipes, moleskin, afterbite, ibuprofen, tweezers, and medical tape.",
+        "image": "https://cdn2.picryl.com/photo/2019/03/13/the-inside-of-a-first-aid-kit-is-displayed-march-13-557250-1024.jpg",
+        "rating": {"rate": 4.3, "count": 90}
+    },
+    {
+        "id": 11,
+        "title": "Swiss Army Knife",
+        "price": 24.95,
+        "description": "All purpose ready to use knife that offers a saw, scissors, knife, bottle opener, etc.",
+        "image": "https://cdn12.picryl.com/photo/2016/12/31/swiss-army-knife-tools-opener-41f996-1024.jpg",
+        "rating": {"rate": 4.9, "count": 110}
+    },
+    {
+        "id": 12,
+        "title": "Sleeping Bag",
+        "price": 78.95,
+        "description": "Thermal and lightweight sleeping bag perfect for moderate tempertured camping/hiking trips.",
+        "image": "https://live.staticflickr.com/5248/5367102965_59060c7133_b.jpg",
+        "rating": {"rate": 4.5, "count": 40}
+    }
+]
