@@ -1,8 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import ReactDOM from 'react-dom/client';
+import "bootstrap/dist/css/bootstrap.css";
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import items from "./product.json";
+import { useForm } from "react-hook-form";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App(){
+  function Shop() {
+    
+  }
+  function Cart() {
+
+  }
+  function Payment() {
+
+  }
+  function Summary() {
+
+  }
+  return(<div>
+    {viewer === 0 && <Shop />}
+    {viewer === 1 && <Cart />}
+    {viewer === 2 && <Payment />}
+    {viewer === 3 && <Summary />}
+  </div>);
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -11,7 +34,3 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
