@@ -13,11 +13,22 @@ function App(){
   const [dataF,setDataF] = useState({});
   const [viewCatalog, setViewCatalog] = useState(true);
   const [viewer,setViewer] = useState(0);
+  const [query, setQuery] = useState("");
 
   function Shop() {
-    function toCart() {
-      setViewCatalog(!viewCatalog);
+    function onSubmit() {
+      setViewer(1);
     }
+
+    const handleChange = (e) => {
+      setQuery(e.target.value);
+      console.log(e.target.value);
+      const results = items.filter(eachItem => {
+          if (e.target.value === "") return cart;
+          return eachItem.title.toLowerCase().includes(e.target.value.toLowerCase())
+      });
+      setCart(results);
+  }
 
     useEffect(() => {
         total();
@@ -49,20 +60,6 @@ function App(){
       }
     };
 
-    const cartItems = cart.map((el) => (
-        <div key={el.id} class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <div class="col">
-                <img class="img-fluid" src={el.image} width={150} />
-            </div>
-            <div class="col">
-                {el.title}
-            </div>
-            <div class="col">
-                ${el.price}
-            </div>
-        </div>
-    ));
-
     function howManyofThis(id) {
         let hmot = cart.filter((cartItem) => cartItem.id === id);
         return hmot.length;
@@ -71,7 +68,7 @@ function App(){
     const listItems = cart.map((el) => (
       <div class="col" key={el.id}>
           <div class="card shadow-sm">
-              <img src={el.image} width="100%" alt="image" />
+              <img src={el.image} width="150" height="100" alt="image" />
               <div class="card-body">
                   <p class="card-text"><strong>{el.title}</strong></p>
                   <p class="card-text">{el.description}</p>
@@ -100,12 +97,49 @@ function App(){
               </div>
             </div>
           </header>
+          {viewCatalog && <div class="container">
+                <div class="album py-3 bg-body-tertiary">
+                    <div class="row">
+                        <div class="cart">
+                            <div class="title">
+                                <div class="row">
+                                    <div class="col mx-3">
+                                        <h1>
+                                            <b>Cart</b>
+                                        </h1>
+                                    </div>
+                                    <div class="col text-center text-muted">
+                                        Products selected: {cart.length}
+                                    </div>
+                                </div>
+                                <div className="py-10">
+                                    <input type="search" value={query} onChange={handleChange} />
+                                </div>
+                            </div>
+                            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                                {listItems}
+                            </div>
+                        </div>
+                        <div class="float-end">
+                            <p class="mb-0 me-5 d-flex align-items-center">
+                                <span class="small text-muted me-2">Order total:</span>
+                                <span class="lead fw-normal">${cartTotal}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+            <div class="container py-3">
+                <button onClick={onSubmit}>Check Out</button>
+            </div>
         </div>
     );
   }
 
   function Payment() {
     return(
+
       <div>
         <header data-bs-theme="dark">
           <div id="navbarHeader">
