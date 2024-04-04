@@ -12,11 +12,16 @@ function App() {
   const [item, setItem] = useState(items);
   const [viewer, setViewer] = useState(0);
   const [query, setQuery] = useState("");
-  const {register, handleSubmit, formState: { errors }} = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [dataF, setDataF] = useState({});
 
   function Shop() {
-    function onSubmit() {
+    function toCart() {
+      if (cart.length > 0)
       setViewer(1);
     }
 
@@ -44,11 +49,11 @@ function App() {
     };
 
     const addToCart = (el) => {
-          console.log(howManyofThis(el.id));
-          console.log(el.count)
-        if (howManyofThis(el.id) < el.rating.count) {
-          setCart([...cart, el]);
-        }
+      console.log(howManyofThis(el.id));
+      console.log(el.count);
+      if (howManyofThis(el.id) < el.rating.count) {
+        setCart([...cart, el]);
+      }
     };
 
     const removeFromCart = (el) => {
@@ -128,37 +133,37 @@ function App() {
             </div>
           </div>
         </header>
-          <div class="container">
-            <div class="album py-3 bg-body-tertiary">
-              <div class="row">
-                <div class="cart">
-                  <div class="title">
-                    <div class="row">
-                      <div class="col text-center text-muted"></div>
-                    </div>
-                    <div className="py-10">
-                      <input type="search" value={query} onChange={search}/>
-                      <span text-align="right">
-                        {" "}
-                        Products selected: {cart.length}
-                      </span>
-                    </div>
+        <div class="container">
+          <div class="album py-3 bg-body-tertiary">
+            <div class="row">
+              <div class="cart">
+                <div class="title">
+                  <div class="row">
+                    <div class="col text-center text-muted"></div>
                   </div>
-                  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    {listItems}
+                  <div className="py-10">
+                    <input type="search" value={query} onChange={search} autoFocus="autoFocus"/>
+                    <span text-align="right">
+                      {" "}
+                      Products selected: {cart.length}
+                    </span>
                   </div>
                 </div>
-                <div class="float-end">
-                  <p class="mb-0 me-5 d-flex align-items-center">
-                    <span class="small text-muted me-2">Order total:</span>
-                    <span class="lead fw-normal">${cartTotal}</span>
-                  </p>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                  {listItems}
                 </div>
+              </div>
+              <div class="float-end">
+                <p class="mb-0 me-5 d-flex align-items-center">
+                  <span class="small text-muted me-2">Order total:</span>
+                  <span class="lead fw-normal">${cartTotal}</span>
+                </p>
               </div>
             </div>
           </div>
+        </div>
         <div class="container py-3">
-          <button onClick={onSubmit}>Check Out</button>
+          <button onClick={toCart}>Check Out</button>
         </div>
         <footer>
           <div id="foot">
@@ -181,10 +186,10 @@ function App() {
     function back() {
       setViewer(0);
     }
-    const onSubmit = data => {
+    const onSubmit = (data) => {
       setDataF(data);
       setViewer(2);
-    }
+    };
     const listCartItems = cart.map((el) => (
       <div key={el.id}>
         <img class="img-fluid" src={el.image} width={150} />
@@ -221,41 +226,79 @@ function App() {
           <div>{listCartItems}</div>
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className="container mt-5">
-            <div className="form-group">
-                <input {...register("fullName", { required: true })} placeholder="Full Name" className="form-control"/>
-                {errors.fullName && <p className="text-danger">Full Name is required.</p>}
-            </div>
-            <div className="form-group">
-                <input {...register("email", { required: true, pattern: /^\S+@\S+$/i })} placeholder="Email" className="form-control"/>
-                {errors.email && <p className="text-danger">Email is required.</p>}
-            </div>
-            <div className="form-group">
-                <input {...register("creditCard", { required: true })} placeholder="Credit Card" className="form-control"/>
-                {errors.creditCard && <p className="text-danger">Credit Card is required.</p>}
-            </div>
-            <div className="form-group">
-                <input {...register("address", { required: true })} placeholder="Address" className="form-control"/>
-                {errors.address && <p className="text-danger">Address is required.</p>}
-            </div>
-            <div className="form-group">
-                <input {...register("address2")} placeholder="Address 2" className="form-control"/>
-            </div>
-            <div className="form-group">
-                <input {...register("city", { required: true })} placeholder="City" className="form-control"/>
-                {errors.city && <p className="text-danger">City is required.</p>}
-            </div>
-            <div className="form-group">
-                <input {...register("state", { required: true })} placeholder="State" className="form-control"/>
-                {errors.state && <p className="text-danger">State is required.</p>}
-            </div>
-            <div className="form-group">
-                <input {...register("zip", { required: true })} placeholder="Zip" className="form-control"/>
-                {errors.zip && <p className="text-danger">Zip is required.</p>}
-            </div>
-            </form>
+          <div className="form-group">
+            <input
+              {...register("fullName", { required: true })}
+              placeholder="Full Name"
+              className="form-control"
+            />
+            {errors.fullName && (
+              <p className="text-danger">Full Name is required.</p>
+            )}
+          </div>
+          <div className="form-group">
+            <input
+              {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
+              placeholder="Email"
+              className="form-control"
+            />
+            {errors.email && <p className="text-danger">Email is required.</p>}
+          </div>
+          <div className="form-group">
+            <input
+              {...register("creditCard", { required: true })}
+              placeholder="Credit Card"
+              className="form-control"
+            />
+            {errors.creditCard && (
+              <p className="text-danger">Credit Card is required.</p>
+            )}
+          </div>
+          <div className="form-group">
+            <input
+              {...register("address", { required: true })}
+              placeholder="Address"
+              className="form-control"
+            />
+            {errors.address && (
+              <p className="text-danger">Address is required.</p>
+            )}
+          </div>
+          <div className="form-group">
+            <input
+              {...register("address2")}
+              placeholder="Address 2"
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <input
+              {...register("city", { required: true })}
+              placeholder="City"
+              className="form-control"
+            />
+            {errors.city && <p className="text-danger">City is required.</p>}
+          </div>
+          <div className="form-group">
+            <input
+              {...register("state", { required: true })}
+              placeholder="State"
+              className="form-control"
+            />
+            {errors.state && <p className="text-danger">State is required.</p>}
+          </div>
+          <div className="form-group">
+            <input
+              {...register("zip", { required: true })}
+              placeholder="Zip"
+              className="form-control"
+            />
+            {errors.zip && <p className="text-danger">Zip is required.</p>}
+          </div>
+          <button type="submit">Submit</button>
+        </form>
         <div class="container py-3">
           <button onClick={back}>Back to Browse</button>
-          <button onClick={onSubmit}>Submit Payment</button>
         </div>
         <footer>
           <div id="foot">
@@ -275,18 +318,20 @@ function App() {
   }
 
   function Summary() {
-    const updateHooks = ()=>{
-      setViewer( 0 );
-      setDataF( dataF ); 
-   };
-   const listCartItems = cart.map((el) => (
-    <div key={el.id}>
-      <img class="img-fluid" src={el.image} width={150} />
-      {el.title}${el.price}
-    </div>
+    const updateHooks = () => {
+      setCartTotal(0);
+      setCart([]);
+      setViewer(0);
+      setDataF(dataF);
+    };
+    const listCartItems = cart.map((el) => (
+      <div key={el.id}>
+        <img class="img-fluid" src={el.image} width={150} />
+        {el.title}${el.price}
+      </div>
     ));
     return (
-      <div>
+      <div margin-left="10px">
         <header data-bs-theme="dark">
           <div id="navbarHeader">
             <div class="container">
@@ -298,16 +343,20 @@ function App() {
             </div>
           </div>
         </header>
+        <div className="container mt-5">
         <h1>Order summary:</h1>
         <div>Total Cost: ${cartTotal}</div>
         <div>Products Selected: {cart.length}</div>
         <div>{listCartItems}</div>
-        <h1> summary:</h1>
+        <h1>Payment summary:</h1>
         <p>{dataF.fullName}</p>
         <p>{dataF.email}</p>
         <p>{dataF.creditCard}</p>
-        <p>{dataF.city},{dataF.state} {dataF.zip} </p>
+        <p>
+          {dataF.city},{dataF.state} {dataF.zip}{" "}
+        </p>
         <button onClick={updateHooks}>Back to Browse</button>
+        </div>
         <footer>
           <div id="foot">
             <div class="container">
