@@ -145,24 +145,55 @@ function App(){
   }
 
   function Payment() {
-    return(
 
-      <div>
-        <header data-bs-theme="dark">
-          <div id="navbarHeader">
-            <div class="container">
-              <div class="row">
-                <div class="col-sm-8 col-md-7 py-4">
-                  <h2>Outdoor Emporium: Payment and Cart</h2>
+      
+      
+    const listCartItems = cart.map((el) => (
+      <div key={el.id}>
+          <img class="img-fluid" src={el.image} width={150} />
+          {el.title}
+          ${el.price}
+      </div>
+  ));
+      return(
+        <div>
+          <header data-bs-theme="dark">
+            <div id="navbarHeader">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-8 col-md-7 py-4">
+                    <h2>Outdoor Emporium: Payment and Cart</h2>
+                      
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </header>
-        <button></button>
-      </div>
-    );
-  }
+          </header>
+          <div class="col-md-8 cart">
+                          <div class="title">
+                              <div class="row">
+                                  <div class="col">
+                                      <h4>
+                                          <b>319 Shopping Cart</b>
+                                      </h4>
+                                  </div>
+                                  <div class="col align-self-center text-right text-muted">
+                                      Products selected {cart.length}
+                                  </div>
+                                  <div class="float-end">
+                                      <p class="mb-0 me-5 d-flex align-items-center">
+                                          <span class="small text-muted me-2">Order total:</span>
+                                          <span class="lead fw-normal">${cartTotal}</span>
+                                      </p>
+                                  </div>
+                              </div>
+                          </div>
+                          <div>{listCartItems}</div>
+                      </div>
+          <button></button>
+        </div>
+      );
+    }
 
   function Summary() {
     return(
