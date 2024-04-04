@@ -9,11 +9,12 @@ import "bootstrap/dist/css/bootstrap.css";
 function App(){
   const [cart, setCart] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const [dataF,setDataF] = useState({});
-  const [viewCatalog, setViewCatalog] = useState(true);
+  const [item, setItems] = useState(items)
   const [viewer,setViewer] = useState(0);
   const [query, setQuery] = useState("");
+  const {register, handleSubmit, formState: { errors } } = useForm();
+  const [dataF,setDataF] = useState({});
+
 
   function Shop() {
     function onSubmit() {
@@ -24,10 +25,10 @@ function App(){
       setQuery(e.target.value);
       console.log(e.target.value);
       const results = items.filter(eachItem => {
-          if (e.target.value === "") return cart;
+          if (e.target.value === "") return item;
           return eachItem.title.toLowerCase().includes(e.target.value.toLowerCase())
       });
-      setCart(results);
+      setItems(results);
   }
 
     useEffect(() => {
@@ -65,7 +66,7 @@ function App(){
         return hmot.length;
     }
 
-    const listItems = cart.map((el) => (
+    const listItems = item.map((el) => (
       <div class="col" key={el.id}>
           <div class="card shadow-sm">
               <img src={el.image} width="150" height="100" alt="image" />
@@ -97,7 +98,7 @@ function App(){
               </div>
             </div>
           </header>
-          {viewCatalog && <div class="container">
+          {viewer === 0 && <div class="container">
                 <div class="album py-3 bg-body-tertiary">
                     <div class="row">
                         <div class="cart">
