@@ -44,7 +44,11 @@ function App() {
     };
 
     const addToCart = (el) => {
-      setCart([...cart, el]);
+          console.log(howManyofThis(el.id));
+          console.log(el.count)
+        if (howManyofThis(el.id) < el.rating.count) {
+          setCart([...cart, el]);
+        }
     };
 
     const removeFromCart = (el) => {
@@ -81,6 +85,7 @@ function App() {
               <strong>{el.title}</strong>
             </p>
             <p class="card-text">{el.description}</p>
+            <p class="card-text">Stock: {el.rating.count}</p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
                 <button
@@ -176,7 +181,8 @@ function App() {
     function back() {
       setViewer(0);
     }
-    function forward() {
+    const onSubmit = data => {
+      setDataF(data);
       setViewer(2);
     }
     const listCartItems = cart.map((el) => (
@@ -201,11 +207,6 @@ function App() {
         <div class="col-md-8 cart">
           <div class="title">
             <div class="row">
-              <div class="col">
-                <h4>
-                  <b>319 Shopping Cart</b>
-                </h4>
-              </div>
               <div class="col align-self-center text-right text-muted">
                 Products selected {cart.length}
               </div>
@@ -219,9 +220,42 @@ function App() {
           </div>
           <div>{listCartItems}</div>
         </div>
+        <form onSubmit={handleSubmit(onSubmit)} className="container mt-5">
+            <div className="form-group">
+                <input {...register("fullName", { required: true })} placeholder="Full Name" className="form-control"/>
+                {errors.fullName && <p className="text-danger">Full Name is required.</p>}
+            </div>
+            <div className="form-group">
+                <input {...register("email", { required: true, pattern: /^\S+@\S+$/i })} placeholder="Email" className="form-control"/>
+                {errors.email && <p className="text-danger">Email is required.</p>}
+            </div>
+            <div className="form-group">
+                <input {...register("creditCard", { required: true })} placeholder="Credit Card" className="form-control"/>
+                {errors.creditCard && <p className="text-danger">Credit Card is required.</p>}
+            </div>
+            <div className="form-group">
+                <input {...register("address", { required: true })} placeholder="Address" className="form-control"/>
+                {errors.address && <p className="text-danger">Address is required.</p>}
+            </div>
+            <div className="form-group">
+                <input {...register("address2")} placeholder="Address 2" className="form-control"/>
+            </div>
+            <div className="form-group">
+                <input {...register("city", { required: true })} placeholder="City" className="form-control"/>
+                {errors.city && <p className="text-danger">City is required.</p>}
+            </div>
+            <div className="form-group">
+                <input {...register("state", { required: true })} placeholder="State" className="form-control"/>
+                {errors.state && <p className="text-danger">State is required.</p>}
+            </div>
+            <div className="form-group">
+                <input {...register("zip", { required: true })} placeholder="Zip" className="form-control"/>
+                {errors.zip && <p className="text-danger">Zip is required.</p>}
+            </div>
+            </form>
         <div class="container py-3">
           <button onClick={back}>Back to Browse</button>
-          <button onClick={forward}>Submit Payment</button>
+          <button onClick={onSubmit}>Submit Payment</button>
         </div>
         <footer>
           <div id="foot">
@@ -243,9 +277,14 @@ function App() {
   function Summary() {
     const updateHooks = ()=>{
       setViewer( 0 );
-      setDataF( dataF );
+      setDataF( dataF ); 
    };
-
+   const listCartItems = cart.map((el) => (
+    <div key={el.id}>
+      <img class="img-fluid" src={el.image} width={150} />
+      {el.title}${el.price}
+    </div>
+    ));
     return (
       <div>
         <header data-bs-theme="dark">
@@ -259,11 +298,20 @@ function App() {
             </div>
           </div>
         </header>
+        <h1>Order summary:</h1>
+        <div>Total Cost: ${cartTotal}</div>
+        <div>Products Selected: {cart.length}</div>
+        <div>{listCartItems}</div>
+        <h1> summary:</h1>
+        <p>{dataF.fullName}</p>
+        <p>{dataF.email}</p>
+        <p>{dataF.creditCard}</p>
+        <p>{dataF.city},{dataF.state} {dataF.zip} </p>
         <button onClick={updateHooks}>Back to Browse</button>
         <footer>
           <div id="foot">
             <div class="container">
-              <p class="home">Outdoor Emporium: Browse</p>
+              <p class="home">Outdoor Emporium: Summary</p>
               <p class="home">Developed by Jacob Lehrman and Kenneth Tschida</p>
               <p class="float-end mb-1">
                 <a id="return" href="#">
