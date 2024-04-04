@@ -12,11 +12,7 @@ function App() {
   const [item, setItem] = useState(items);
   const [viewer, setViewer] = useState(0);
   const [query, setQuery] = useState("");
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const {register, handleSubmit, formState: { errors }} = useForm();
   const [dataF, setDataF] = useState({});
 
   function Shop() {
@@ -26,9 +22,8 @@ function App() {
 
     const search = (e) => {
       setQuery(e.target.value);
-      console.log(e.target.value);
       const page = items.filter((eachItem) => {
-        if (e.target.value === "") return item;
+        if (e.target.value === "") return eachItem;
         return eachItem.title
           .toLowerCase()
           .includes(e.target.value.toLowerCase());
@@ -128,7 +123,6 @@ function App() {
             </div>
           </div>
         </header>
-        {viewer === 0 && (
           <div class="container">
             <div class="album py-3 bg-body-tertiary">
               <div class="row">
@@ -138,7 +132,7 @@ function App() {
                       <div class="col text-center text-muted"></div>
                     </div>
                     <div className="py-10">
-                      <input type="search" value={query} onChange={search} />
+                      <input type="search" value={query} onChange={search}/>
                       <span text-align="right">
                         {" "}
                         Products selected: {cart.length}
@@ -158,7 +152,6 @@ function App() {
               </div>
             </div>
           </div>
-        )}
         <div class="container py-3">
           <button onClick={onSubmit}>Check Out</button>
         </div>
