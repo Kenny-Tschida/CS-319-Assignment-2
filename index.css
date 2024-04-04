@@ -6,8 +6,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#navbarHeader {
+  background-image: linear-gradient(rgb(0,35,0), rgb(0,60,0));
+  background-color: rgb(0, 45, 0);
+  border-color: rgb(0, 45, 0);
+  color: white;
+  padding-bottom: 10px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-align: left;
 }
