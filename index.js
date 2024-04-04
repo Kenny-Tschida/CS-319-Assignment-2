@@ -9,26 +9,25 @@ import "bootstrap/dist/css/bootstrap.css";
 function App(){
   const [cart, setCart] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
-  const [item, setItems] = useState(items)
+  const [item, setItem] = useState(items)
   const [viewer,setViewer] = useState(0);
   const [query, setQuery] = useState("");
   const {register, handleSubmit, formState: { errors } } = useForm();
   const [dataF,setDataF] = useState({});
-
 
   function Shop() {
     function onSubmit() {
       setViewer(1);
     }
 
-    const handleChange = (e) => {
+    const search = (e) => {
       setQuery(e.target.value);
       console.log(e.target.value);
-      const results = items.filter(eachItem => {
+      const page = items.filter(eachItem => {
           if (e.target.value === "") return item;
           return eachItem.title.toLowerCase().includes(e.target.value.toLowerCase())
       });
-      setItems(results);
+      setItem(page);
   }
 
     useEffect(() => {
@@ -69,7 +68,7 @@ function App(){
     const listItems = item.map((el) => (
       <div class="col" key={el.id}>
           <div class="card shadow-sm">
-              <img src={el.image} width="150" height="100" alt="image" />
+              <img src={el.image} width="500" height="300" class="card-img-top" alt="image"/>
               <div class="card-body">
                   <p class="card-text"><strong>{el.title}</strong></p>
                   <p class="card-text">{el.description}</p>
@@ -104,17 +103,13 @@ function App(){
                         <div class="cart">
                             <div class="title">
                                 <div class="row">
-                                    <div class="col mx-3">
-                                        <h1>
-                                            <b>Cart</b>
-                                        </h1>
-                                    </div>
                                     <div class="col text-center text-muted">
-                                        Products selected: {cart.length}
+                                        
                                     </div>
                                 </div>
                                 <div className="py-10">
-                                    <input type="search" value={query} onChange={handleChange} />
+                                    <input type="search" value={query} onChange={search} />
+                                    <span text-align="right"> Products selected: {cart.length}</span>
                                 </div>
                             </div>
                             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -134,6 +129,17 @@ function App(){
             <div class="container py-3">
                 <button onClick={onSubmit}>Check Out</button>
             </div>
+            <footer>
+              <div id="foot">
+                  <div class="container">
+                      <p class="home">Outdoor Emporium: Browse</p>
+                      <p class="home">Developed by Jacob Lehrman and Kenneth Tschida</p>
+                      <p class="float-end mb-1">
+                          <a id="return" href="#">Back to top</a>
+                      </p>
+                  </div>
+              </div>
+            </footer>
         </div>
     );
   }
